@@ -26,7 +26,7 @@ export const Statistics = ({
       </li>
       <li>
         <p>
-          <StyledSpan>Total:</StyledSpan>: {total}
+          <StyledSpan>Total:</StyledSpan> {total}
         </p>
       </li>
       <li>
