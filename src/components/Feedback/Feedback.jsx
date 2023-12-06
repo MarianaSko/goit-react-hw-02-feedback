@@ -19,26 +19,16 @@ export class Feedback extends Component {
   countPositiveFeedbackPercentage() {
     return Math.round(
       (this.state.good * 100) /
-        (this.state.good + this.state.neutral + this.state.bad) || 0
+        (this.state.good + this.state.neutral + this.state.bad)
     );
   }
 
   handleFeedbackCount = event => {
-    if (event.target.name === 'good') {
-      this.setState(prevState => ({
-        good: prevState.good + 1,
-      }));
-    }
-    if (event.target.name === 'neutral') {
-      this.setState(prevState => ({
-        neutral: prevState.neutral + 1,
-      }));
-    }
-    if (event.target.name === 'bad') {
-      this.setState(prevState => ({
-        bad: prevState.bad + 1,
-      }));
-    }
+    const btnName = event.target.name;
+
+    this.setState(prevState => ({
+      [btnName]: prevState[btnName] + 1,
+    }));
   };
 
   render() {
@@ -54,9 +44,7 @@ export class Feedback extends Component {
         </Section>
 
         <Section title="Statistics">
-          {this.state.good === 0 &&
-          this.state.neutral === 0 &&
-          this.state.bad === 0 ? (
+          {!this.state.good && !this.state.neutral && !this.state.bad ? (
             <Notification message="There is no feedback" />
           ) : (
             <Statistics
