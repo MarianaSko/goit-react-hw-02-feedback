@@ -17,10 +17,7 @@ export class Feedback extends Component {
   }
 
   countPositiveFeedbackPercentage() {
-    return Math.round(
-      (this.state.good * 100) /
-        (this.state.good + this.state.neutral + this.state.bad)
-    );
+    return Math.round((this.state.good * 100) / this.countTotalFeedback());
   }
 
   handleFeedbackCount = event => {
@@ -44,7 +41,7 @@ export class Feedback extends Component {
         </Section>
 
         <Section title="Statistics">
-          {!this.state.good && !this.state.neutral && !this.state.bad ? (
+          {!totalFeedback ? (
             <Notification message="There is no feedback" />
           ) : (
             <Statistics
